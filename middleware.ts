@@ -4,7 +4,7 @@ export async function middleware(request: NextRequest) {
   const isLogin = request.nextUrl.pathname === '/login';
   
   const session = request.cookies.get('ory_kratos_session');
-  if (!session) {
+  if (!session || !isLogin) {
     console.log('[middleware] session', 'session not found');
     return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
   }
