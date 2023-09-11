@@ -47,7 +47,8 @@ export default function Google() {
           const goto = err.response.data.redirect_browser_to;
           window.open(goto, '_self');
         }
-      }
+      },
+      retry: false
     }
   );
   
