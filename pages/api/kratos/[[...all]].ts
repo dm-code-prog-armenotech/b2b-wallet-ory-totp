@@ -7,6 +7,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => httpProxyMiddlewar
   target: 'https://kratos-totp-demo.fly.dev',
   pathRewrite: {
     '/api/kratos': ''
-  },
-  followRedirects: true
+  }
 });
