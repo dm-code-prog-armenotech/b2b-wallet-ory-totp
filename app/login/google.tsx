@@ -11,7 +11,10 @@ export default function Google() {
     return res.data;
   }, {
     retry: false,
-    cacheTime: 1000 * 60 * 5
+    cacheTime: 1000 * 60 * 5,
+    onError: (error) => {
+      window.location.replace('/');
+    }
   });
   
   const mutation = useMutation(
