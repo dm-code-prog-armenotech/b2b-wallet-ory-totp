@@ -19,15 +19,23 @@ export default function Google() {
       
       // @ts-ignore
       const crsfNode = query.data.ui.nodes.find(
-        (node) => node.attributes.name === 'csrf_token'
+        (node) => {
+          if ('name' in node.attributes) {
+            return node.attributes.name === 'csrf_token';
+          }
+        }
       );
+      
+      if (!crsfNode) {
+        return;
+      }
       
       // @ts-ignore
       await kratos.updateLoginFlow({
         flow: query.data.id,
         updateLoginFlowBody: {
           method: 'oidc',
-          csrf_token: crsfNode?.attributes.value,
+          csrf_token: 'value' in crsfNode?.attributes ? crsfNode?.attributes.value : '',
           provider: 'google'
         }
       });
