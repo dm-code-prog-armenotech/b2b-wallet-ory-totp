@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 
 export async function middleware(request: NextRequest) {
+  const isLogin = request.nextUrl.pathname === '/login';
+  
   const session = request.cookies.get('ory_kratos_session');
   if (!session) {
     console.log('[middleware] session', 'session not found');
@@ -15,11 +16,11 @@ export async function middleware(request: NextRequest) {
     }
   });
   
-  if (res.status === 401 ) {
+  if (res.status === 401 && !isLogin) {
     console.log('[middleware]', 'session invalid');
     return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
   }
- 
+  
   return NextResponse.next();
 }
 
