@@ -9,6 +9,9 @@ export default function Google() {
   const query = useQuery(['create', 'login', 'flow'], async () => {
     const res = await kratos.createBrowserLoginFlow();
     return res.data;
+  }, {
+    retry: false,
+    cacheTime: 1000 * 60 * 5
   });
   
   const mutation = useMutation(
@@ -27,6 +30,10 @@ export default function Google() {
       );
       
       if (!crsfNode) {
+        return;
+      }
+      
+      if (query.isLoading) {
         return;
       }
       

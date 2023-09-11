@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
     }
   });
   if (res.status === 401) {
-    console.log('[middleware] session', 'session invalid');
+    console.log('[middleware]', 'session invalid');
     return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
   }
   
