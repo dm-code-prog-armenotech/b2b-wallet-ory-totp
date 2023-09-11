@@ -3,7 +3,6 @@
 import { Button } from '@tremor/react';
 import { useMutation, useQuery } from 'react-query';
 import { kratos } from '../../lib/kratos';
-import { AxiosError } from 'axios';
 
 export default function Google() {
   
@@ -34,7 +33,7 @@ export default function Google() {
       });
     }, {
       onError: (error) => {
-        const err = error as AxiosError;
+        const err = error as any;
         const status = err.response?.status;
         if (status === 422) {
           const goto = err.response.data.redirect_browser_to;
