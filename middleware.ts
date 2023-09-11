@@ -3,6 +3,8 @@ import { cookies } from 'next/headers';
 
 export async function middleware(request: NextRequest) {
   
+  const isLogin = request.nextUrl.pathname === '/login';
+  
   const session = cookies().get('ory_kratos_session');
   if (!session) {
     console.log('[middleware] session', 'session not found');
@@ -20,9 +22,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
   }
   
+  if (isLogin) {
+    return NextResponse.redirect(new URL('/', request.nextUrl).toString());
+  }
+  
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/wallet', '/2fa']
+  matcher: ['/', '/wallet', '/2fa', '/login']
 };
