@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 export async function middleware(request: NextRequest) {
-  
   const isLogin = request.nextUrl.pathname === '/login';
   
   const session = cookies().get('ory_kratos_session');
@@ -22,7 +21,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.nextUrl).toString());
   }
   
-  if (isLogin) {
+  if (isLogin && res.status === 200) {
     return NextResponse.redirect(new URL('/', request.nextUrl).toString());
   }
   
