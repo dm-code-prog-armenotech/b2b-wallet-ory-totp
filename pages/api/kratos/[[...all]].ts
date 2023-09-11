@@ -8,7 +8,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => httpProxyMiddlewar
   pathRewrite: {
     '/api/kratos': ''
   },
-  headers: {
-    'Accept': 'application/json'
-  }
+  followRedirects: true
 });
