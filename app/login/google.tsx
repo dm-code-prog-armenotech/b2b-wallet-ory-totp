@@ -5,7 +5,6 @@ import { useMutation, useQuery } from 'react-query';
 import { kratos } from '../../lib/kratos';
 
 export default function Google() {
-  
   const query = useQuery(['create', 'login', 'flow'], async () => {
     const res = await kratos.createBrowserLoginFlow();
     return res.data;
