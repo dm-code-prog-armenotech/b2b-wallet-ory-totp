@@ -4,10 +4,19 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
 import { Callout } from '@tremor/react';
 import { kratos } from '../../lib/kratos';
-import { ReactNode } from 'react';
 
 export default function Page() {
-  
+  return (
+    <QueryClientProvider client={new QueryClient()}>
+      <Callout title={'Error'} className={'w-[380px]'}>
+        <Error />
+      </Callout>
+    </QueryClientProvider>
+  );
+}
+
+
+const Error = () => {
   const query = useQuery(['get', 'user', 'facing', 'error'],
     async () => {
       const queryParams = new URLSearchParams(window.location.search);
@@ -19,21 +28,14 @@ export default function Page() {
     }
   );
   
-  let children: ReactNode = '';
   
   if (query.isLoading) {
-    children = 'Loading...';
+    return 'Loading...';
   }
   
   if (query.isSuccess) {
-    children = JSON.stringify(query.data.error, null, 2);
+    return JSON.stringify(query.data.error, null, 2);
   }
   
-  return (
-    <QueryClientProvider client={new QueryClient()}>
-      <Callout title={'Error'} className={'w-[380px]'}>
-        {children}
-      </Callout>
-    </QueryClientProvider>
-  );
-}
+  return null;
+};
