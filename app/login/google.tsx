@@ -10,7 +10,8 @@ export default function Google() {
     return res.data;
   }, {
     retry: false,
-    cacheTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
     onError: (error) => {
       window.location.replace('/');
     }
