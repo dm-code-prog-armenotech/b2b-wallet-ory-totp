@@ -28,7 +28,6 @@ const Error = () => {
     }
   );
   
-  
   if (query.isLoading) {
     return 'Loading...';
   }
