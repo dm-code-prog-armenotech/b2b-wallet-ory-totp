@@ -8,6 +8,7 @@ import { UiNode } from '@ory/kratos-client';
 import { Card, Subtitle, Title } from '@tremor/react';
 import { useForm } from 'react-hook-form';
 import { Container } from '../container';
+import { BallTriangle } from 'react-loader-spinner';
 
 export default function Page() {
   return <TwoAfa />;
@@ -49,6 +50,8 @@ const TwoAfa = () => {
         flow: query.data.id,
         updateSettingsFlowBody: values
       });
+
+      toast.loading('Adding 2fa', { duration: 1000 });
     },
     {
       onError: (error: any) => {},
@@ -105,7 +108,7 @@ const TwoAfa = () => {
     ) {
       const label = node.meta.label?.text || '';
       return (
-        <div className={'flex flex-col gap-6 '}>
+        <div className={'flex flex-col gap-2 '}>
           <Subtitle>{label}</Subtitle>
           <img
             src={node.attributes.src}
@@ -120,7 +123,11 @@ const TwoAfa = () => {
   };
 
   if (query.isLoading) {
-    return <Container>{''}</Container>;
+    return (
+      <Container>
+        <BallTriangle color="#4338ca" height={80} width={80} />
+      </Container>
+    );
   }
 
   if (query.isError) {

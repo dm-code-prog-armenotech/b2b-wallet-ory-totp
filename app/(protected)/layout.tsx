@@ -3,6 +3,7 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from './nav';
 import { Suspense } from 'react';
+import { ToastContainer } from '../toast';
 
 export const metadata = {
   title: 'Ory TOTP demo',
@@ -22,6 +23,7 @@ export default async function RootLayout({
           <Nav />
         </Suspense>
         {children}
+        <ToastContainer />
         <Analytics />
       </body>
     </html>

@@ -42,6 +42,8 @@ export default function Page() {
 
       values['method'] = 'totp';
 
+      toast.loading('Verifying 2fa', { duration: 1000 });
+
       await kratos.updateLoginFlow({
         flow: query.data.id,
         updateLoginFlowBody: values
@@ -51,6 +53,9 @@ export default function Page() {
       onSuccess: () => {
         toast.success('Successfully passed 2fa');
         router.push('/');
+      },
+      onError: (error: any) => {
+        toast.error('Something went wrong, please try again.');
       }
     }
   );
@@ -87,11 +92,6 @@ export default function Page() {
             type={inputType}
             className={` h-10 px-4 rounded-xl ${bg} ${color} ${cursor} border-indigo-500 border-2`}
           />
-          {errors[name] && (
-            <span className={'text-red-600 text-sm'}>
-              This field is required
-            </span>
-          )}
         </div>
       );
     }
