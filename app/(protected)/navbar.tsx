@@ -8,7 +8,10 @@ import Image from 'next/image';
 import { kratos } from '../../lib/kratos';
 import { toast } from 'react-hot-toast';
 
-const navigation = [{ name: 'Dashboard', href: '/' }];
+const navigation = [
+  { name: 'Dashboard', href: '/' },
+  { name: 'Wallet', href: '/wallet' }
+];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');

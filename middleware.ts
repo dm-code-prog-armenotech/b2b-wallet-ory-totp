@@ -84,5 +84,12 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/wallet', '/2fa/add', '/2fa/verify', '/login']
+  matcher: [
+    '/',
+    '/wallet',
+    '/2fa/add',
+    '/2fa/verify',
+    '/login',
+    '/api/withdraw'
+  ]
 };
