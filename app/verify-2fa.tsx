@@ -29,7 +29,7 @@ export const Verify2Fa = ({ onSuccess }: { onSuccess: () => void }) => {
       cacheTime: 5 * 60 * 1000,
       refetchInterval: 5 * 60 * 1000,
       refetchOnWindowFocus: false,
-      retry: 2,
+      retry: 1,
       onError: () => {
         setRefresh(!refresh);
       }

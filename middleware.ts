@@ -25,6 +25,7 @@ export async function middleware(request: NextRequest) {
     const isPathLogin = request.nextUrl.pathname === PATH_LOGIN;
     const isPath2faAdd = request.nextUrl.pathname === PATH_2FA_ADD;
     const isPath2faVerify = request.nextUrl.pathname === PATH_2FA_VERIFY;
+    const isPathRoot = request.nextUrl.pathname === '/';
 
     const redirectToLogin = new URL(PATH_LOGIN, request.nextUrl).toString();
     const redirectTo2faAdd = new URL(PATH_2FA_ADD, request.nextUrl).toString();
@@ -32,6 +33,7 @@ export async function middleware(request: NextRequest) {
       PATH_2FA_VERIFY,
       request.nextUrl
     ).toString();
+    const redirectToWallet = new URL('/wallet', request.nextUrl).toString();
 
     const session = request.cookies.get(ORY_KRATOS_SESSION);
     if (!session && !isPathLogin) {
@@ -70,6 +72,10 @@ export async function middleware(request: NextRequest) {
       }
     }
 
+    if (isPathRoot) {
+      return NextResponse.redirect(redirectToWallet);
+    }
+
     return NextResponse.next();
   } catch (e) {
     return NextResponse.json(
@@ -87,6 +93,7 @@ export const config = {
   matcher: [
     '/',
     '/wallet',
+    '/settings',
     '/2fa/add',
     '/2fa/verify',
     '/login',

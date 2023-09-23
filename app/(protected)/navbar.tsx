@@ -9,8 +9,8 @@ import { kratos } from '../../lib/kratos';
 import { toast } from 'react-hot-toast';
 
 const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Wallet', href: '/wallet' }
+  { name: 'Wallet', href: '/wallet' },
+  { name: 'Settings', href: '/settings' }
 ];
 
 function classNames(...classes: string[]) {

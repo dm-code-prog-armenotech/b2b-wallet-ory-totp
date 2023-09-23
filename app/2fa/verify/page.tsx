@@ -15,7 +15,7 @@ export default function Page() {
     <Container>
       <Verify2Fa
         onSuccess={() => {
-          router.push('/');
+          router.push('/wallet');
         }}
       />
     </Container>

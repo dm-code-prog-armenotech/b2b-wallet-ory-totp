@@ -25,7 +25,7 @@ const TwoAfa = () => {
   const router = useRouter();
 
   const query = useQuery(
-    ['2fa'],
+    ['add', '2fa'],
     async () => {
       const res = await kratos.createBrowserSettingsFlow();
       return res.data;
@@ -57,7 +57,7 @@ const TwoAfa = () => {
       onError: (error: any) => {},
       onSuccess: () => {
         toast.success('Successfully added 2fa');
-        router.push('/');
+        router.push('/wallet');
       }
     }
   );

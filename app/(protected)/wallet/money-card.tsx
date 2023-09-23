@@ -82,7 +82,7 @@ export const MoneyCard = () => {
         </TabGroup>
       </Flex>
       <Text className="mt-8">Wallet balance</Text>
-      <Metric>$ 25,465</Metric>
+      <Metric>$ 255,465</Metric>
       <Divider />
       <Text className="mt-8">
         <Bold>Asset Allocation</Bold>

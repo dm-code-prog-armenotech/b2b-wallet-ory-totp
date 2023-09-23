@@ -17,7 +17,7 @@ export default function Google() {
       refetchOnWindowFocus: false,
       refetchInterval: false,
       onError: (error) => {
-        window.location.replace('/');
+        window.location.replace('/wallet');
       }
     }
   );
