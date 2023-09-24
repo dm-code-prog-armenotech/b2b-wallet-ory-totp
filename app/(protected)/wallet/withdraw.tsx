@@ -53,10 +53,10 @@ export const Withdraw = () => {
             </>
           ) : (
             <>
-              <Title className={'sm:w-full md:w-[400px] text-center'}>
+              <Subtitle className={'sm:w-full md:w-[450px]'}>
                 Please complete the 2FA verification to withdraw funds from your
                 wallet.
-              </Title>
+              </Subtitle>
               <Verify2Fa
                 onSuccess={() => {
                   setHas2fa(true);

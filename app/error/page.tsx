@@ -15,26 +15,23 @@ export default function Page() {
   );
 }
 
-
 const Error = () => {
-  const query = useQuery(['get', 'user', 'facing', 'error'],
-    async () => {
-      const queryParams = new URLSearchParams(window.location.search);
-      const id = queryParams.get('id');
-      const { data } = await kratos.getFlowError({
-        id: id || ''
-      });
-      return data;
-    }
-  );
-  
+  const query = useQuery(['get', 'user', 'facing', 'error'], async () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+    const { data } = await kratos.getFlowError({
+      id: id || ''
+    });
+    return data;
+  });
+
   if (query.isLoading) {
     return 'Loading...';
   }
-  
+
   if (query.isSuccess) {
     return JSON.stringify(query.data.error, null, 2);
   }
-  
+
   return null;
 };

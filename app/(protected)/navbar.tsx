@@ -10,7 +10,8 @@ import { toast } from 'react-hot-toast';
 
 const navigation = [
   { name: 'Wallet', href: '/wallet' },
-  { name: 'Settings', href: '/settings' }
+  { name: 'Settings', href: '/settings' },
+  { name: 'Admin', href: '/admin' }
 ];
 
 function classNames(...classes: string[]) {
