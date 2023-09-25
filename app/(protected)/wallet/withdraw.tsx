@@ -11,7 +11,10 @@ export const Withdraw = () => {
 
   const [has2fa, setHas2fa] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const withdraw = async () => {
+    setLoading(true);
     const res = await fetch('/api/withdraw', {
       credentials: 'include'
     });
@@ -22,6 +25,7 @@ export const Withdraw = () => {
 
     toast.success('Successfully withdrew funds');
     setOpen(false);
+    setLoading(false);
   };
 
   return (
@@ -48,7 +52,9 @@ export const Withdraw = () => {
               </Subtitle>
               <Flex className={'gap-2'}>
                 <TextInput className={'w-full'} placeholder={'Amount'} />
-                <Button onClick={withdraw}>Withdraw</Button>
+                <Button onClick={withdraw} loading={loading}>
+                  Withdraw
+                </Button>
               </Flex>
             </>
           ) : (
