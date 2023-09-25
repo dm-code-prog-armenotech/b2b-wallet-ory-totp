@@ -80,7 +80,8 @@ export async function middleware(request: NextRequest) {
   } catch (e) {
     return NextResponse.json(
       {
-        error: 'Internal Server Error'
+        error: 'Internal Server Error',
+        message: e
       },
       {
         status: 500

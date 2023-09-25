@@ -105,6 +105,14 @@ export const Users = () => {
     return <ListLoader />;
   }
 
+  if (identities.isError) {
+    return (
+      <p className={'text-red-600 text-sm'}>
+        Something went wrong, please try again.
+      </p>
+    );
+  }
+
   if (identities.isSuccess) {
     const users: KratosUser[] = identities.data.map((i) => ({
       id: i.id,
