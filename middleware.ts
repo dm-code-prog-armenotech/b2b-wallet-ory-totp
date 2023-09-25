@@ -94,6 +94,7 @@ export const config = {
   matcher: [
     '/',
     '/wallet',
+    '/admin',
     '/settings',
     '/2fa/add',
     '/2fa/verify',
