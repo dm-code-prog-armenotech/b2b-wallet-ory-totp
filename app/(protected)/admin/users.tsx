@@ -158,8 +158,12 @@ export const Users = () => {
                       variant="secondary"
                       color="gray"
                       onClick={() => linkMutation.mutate(user.id)}
+                      loading={
+                        linkMutation.isLoading &&
+                        linkMutation.variables === user.id
+                      }
                     >
-                      Create
+                      Create recovery link
                     </Button>
                     <Button
                       size="xs"
@@ -168,6 +172,10 @@ export const Users = () => {
                       onClick={() => {
                         resetMutation.mutate(user.id);
                       }}
+                      loading={
+                        resetMutation.isLoading &&
+                        resetMutation.variables === user.id
+                      }
                     >
                       Reset 2FA
                     </Button>
