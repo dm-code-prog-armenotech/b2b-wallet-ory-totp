@@ -99,6 +99,7 @@ export const config = {
     '/2fa/add',
     '/2fa/verify',
     '/login',
-    '/api/withdraw'
+    '/api/withdraw',
+    '/api/v2/withdraw'
   ]
 };

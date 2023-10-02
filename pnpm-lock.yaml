@@ -70,6 +70,9 @@ dependencies:
   postcss:
     specifier: ^8.4.28
     version: 8.4.28
+  postgres:
+    specifier: ^3.3.5
+    version: 3.3.5
   prettier:
     specifier: ^3.0.2
     version: 3.0.2
@@ -2977,6 +2980,10 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+    dev: false
+
+  /postgres@3.3.5:
+    resolution: {integrity: sha512-+JD93VELV9gHkqpV5gdL5/70HdGtEw4/XE1S4BC8f1mcPmdib3K5XsKVbnR1XcAyC41zOnifJ+9YRKxdIsXiUw==}
     dev: false
 
   /preact-render-to-string@5.2.6(preact@10.17.1):

@@ -1,6 +1,6 @@
 import { Card } from '@tremor/react';
 import { Users } from './users';
-import { QP } from './query-provider';
+import { QP } from '../../query-provider';
 
 export interface KratosUser {
   id: string;

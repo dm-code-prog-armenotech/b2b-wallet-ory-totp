@@ -101,7 +101,7 @@ export const Users = () => {
     }
   );
 
-  if (identities.isFetching) {
+  if (identities.isLoading) {
     return <ListLoader />;
   }
 
@@ -114,11 +114,12 @@ export const Users = () => {
   }
 
   if (identities.isSuccess) {
+    console.log(identities);
     const users: KratosUser[] = identities.data.map((i) => ({
       id: i.id,
       email: i.traits.email,
       status: i.state!,
-      name: i.traits.name.first + ' ' + i.traits.name.last,
+      name: i.traits.name?.first + ' ' + i.traits.name?.last,
       picture: i.traits.picture
     }));
 

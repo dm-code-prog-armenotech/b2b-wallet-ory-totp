@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { kratos } from '../../lib/kratos';
 
-export const use2fa = () => {
+export const use2fa = (fid?: string) => {
   const [needRefresh, setNeedRefresh] = useState<boolean>(false);
-  const [flow, setFlow] = useState<string | undefined>(undefined);
+  const [flow, setFlow] = useState<string | undefined>(fid);
 
   return useQuery(
     ['use-2fa', { needRefresh, flow }],

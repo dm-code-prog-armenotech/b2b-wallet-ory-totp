@@ -4,7 +4,6 @@ import { toast } from 'react-hot-toast';
 import { Card, Divider, Title } from '@tremor/react';
 import { KratosUiNodesForm } from './kratos-ui-nodes-form';
 import { use2fa } from './_hooks/use2fa';
-import ContentLoader from 'react-content-loader';
 import { LargeSkeleton } from './skeletons';
 
 interface IFormInputs {
@@ -13,17 +12,23 @@ interface IFormInputs {
   totp_code: string;
 }
 
-export const Verify2Fa = ({ onSuccess }: { onSuccess: () => void }) => {
+export const Verify2Fa = ({
+  onSuccess,
+  fid
+}: {
+  onSuccess: () => void;
+  fid?: string;
+}) => {
   return (
     <Card className={'sm:w-full md:w-[450px]'}>
       <Title>Two Factor Authentication</Title>
-      <Form onSuccess={onSuccess} />
+      <Form onSuccess={onSuccess} fid={fid} />
     </Card>
   );
 };
 
-const Form = ({ onSuccess }: { onSuccess: () => void }) => {
-  const twoAfa = use2fa();
+const Form = ({ onSuccess, fid }: { onSuccess: () => void; fid?: string }) => {
+  const twoAfa = use2fa(fid);
 
   const mutation = useMutation(
     ['pass-2fa'],

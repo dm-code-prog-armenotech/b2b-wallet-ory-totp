@@ -2,7 +2,6 @@ import { UiNode } from '@ory/kratos-client';
 import { FieldValues, Path, useForm } from 'react-hook-form';
 import { Button, Subtitle } from '@tremor/react';
 import { useOidc } from '../_hooks/useOidc';
-import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { toast } from 'react-hot-toast';
 import { kratos } from '../../lib/kratos';
@@ -30,11 +29,7 @@ const Form = <T extends FieldValues>({
   nodes: UiNode[];
   onSubmit: (values: T) => void;
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<T>();
+  const { register, handleSubmit } = useForm<T>();
 
   const Node = ({ node }: { node: UiNode }) => {
     if (
@@ -104,7 +99,6 @@ const Form = <T extends FieldValues>({
 
 export const NewGoogle = () => {
   const oidc = useOidc();
-  const router = useRouter();
 
   const mutation = useMutation(
     ['mutate-google'],
@@ -129,7 +123,7 @@ export const NewGoogle = () => {
     mutation.mutate(values);
   };
 
-  if (oidc.isFetching) {
+  if (oidc.isLoading) {
     return <Skeleton />;
   }
 
