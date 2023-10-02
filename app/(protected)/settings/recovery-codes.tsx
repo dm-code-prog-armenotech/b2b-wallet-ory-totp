@@ -6,7 +6,7 @@ import { useMutation } from 'react-query';
 import { kratos } from '../../../lib/kratos';
 import { toast } from 'react-hot-toast';
 import type { AxiosError } from 'axios';
-import { queryClient } from './settings';
+import { queryClient } from '../../query-provider';
 import { SmallSkeleton } from '../../skeletons';
 
 interface IFormInputs {

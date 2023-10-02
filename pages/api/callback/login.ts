@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const flow = payload.ctx.flow;
 
     if (flow.active !== 'totp') {
-      return res.status(200);
+      return res.status(200).json({ message: 'Skipping' });
     }
 
     const id = flow.id;
@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           and expires_at > now()
     `;
 
-    return res.status(200);
+    return res.status(200).json({ message: 'Success' });
   }
 
   return res.status(405);

@@ -4,7 +4,7 @@ import { Divider, Flex, Title } from '@tremor/react';
 import { kratos } from '../../../lib/kratos';
 import { KratosUiNodesForm } from '../../kratos-ui-nodes-form';
 import { toast } from 'react-hot-toast';
-import { queryClient } from './settings';
+import { queryClient } from '../../query-provider';
 import { Skeleton } from '../../skeletons';
 
 interface IFormInputs {
