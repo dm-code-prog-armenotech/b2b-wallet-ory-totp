@@ -56,7 +56,7 @@ const Form = ({ onSuccess, fid }: { onSuccess: () => void; fid?: string }) => {
     mutation.mutate(values);
   };
 
-  if (twoAfa.isFetching) {
+  if (twoAfa.isLoading) {
     return <LargeSkeleton />;
   }
 
