@@ -13,12 +13,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const id = flow.id;
 
-    await sql`
-        update withdraw_flows
-        set verified = true
-        where two_fa_flow_id = ${id}
-          and expires_at > now()
-    `;
+    try {
+      await sql`
+          update withdraw_flows
+          set verified = true
+          where two_fa_flow_id = ${id}
+            and expires_at > now()
+      `;
+    } catch (e) {
+      console.log('[/api/callback/login] error', e);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
 
     return res.status(200).json({ message: 'Success' });
   }

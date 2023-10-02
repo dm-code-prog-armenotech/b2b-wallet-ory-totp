@@ -25,14 +25,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const flowId = randomUUID();
 
-      await sql`
-          insert into withdraw_flows (id, user_id, amount, bank_account, two_fa_flow_id)
-          values (${flowId},
-                  ${user_id},
-                  ${amount},
-                  ${bank_account},
-                  ${two_fa_flow_id})
-      `;
+      try {
+        await sql`
+            insert into withdraw_flows (id, user_id, amount, bank_account, two_fa_flow_id)
+            values (${flowId},
+                    ${user_id},
+                    ${amount},
+                    ${bank_account},
+                    ${two_fa_flow_id})
+        `;
+      } catch (e) {
+        console.log('[/api/v2/withdraw/initiate] error', e);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
 
       return res.status(200).json({
         message:
